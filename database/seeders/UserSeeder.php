@@ -18,8 +18,9 @@ class UserSeeder extends Seeder
         User::insert([
             'username' => 'ADMIN1',
             'name' => 'Ahmad Fadilah',
-            'password' => crypt('admin123', 10),
+            'password' => bcrypt('admin123'),
             'email' => 'ahmadfadilah202003@gmail.com',
+            'phone' => '085795069461',
             'role' => 'admin',
             'from_competition' => 'Admin',
             'created_at' => now('Asia/Jakarta')
@@ -27,8 +28,9 @@ class UserSeeder extends Seeder
         User::insert([
             'username' => 'ADMIN2',
             'name' => 'Daffa Hafizh',
-            'password' => crypt('admin321', 10),
+            'password' => bcrypt('admin321'),
             'email' => 'masdapp123@gmail.com',
+            'phone' => '-',
             'role' => 'admin',
             'from_competition' => 'Admin',
             'created_at' => now('Asia/Jakarta')

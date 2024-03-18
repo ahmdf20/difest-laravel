@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('competition_timelines', function (Blueprint $table) {
+        Schema::create('grading_criterias', function (Blueprint $table) {
             $table->id();
-            $table->string('icon');
-            $table->foreignId('competition_id')->constrained('competitions');
-            $table->text('event_detail');
+            $table->foreignId('comp_id')->constrained('competitions');
+            $table->string('label');
             $table->timestamps();
-            $table->softDeletes('deleted_at');
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('competition_timelines');
+        Schema::dropIfExists('grading_criterias');
     }
 };
