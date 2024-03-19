@@ -12,7 +12,7 @@ class UserController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Digital Festival | Dashboard User'
+            'title' => 'Digital Festival | Dashboard'
         ];
 
         return view('user.index', $data);
@@ -24,7 +24,7 @@ class UserController extends Controller
             'title' => 'Digital Festival | Participant',
             'participants' => User::where('role', 'participant')->get()->all(),
         ];
-        return view('user.participant', $data);
+        return view('participant.index', $data);
     }
 
     public function commite()
@@ -197,5 +197,13 @@ class UserController extends Controller
             'message' => 'Berhasil mengedit data judge!',
             'title' => 'Edit Data'
         ]);
+    }
+
+    public function profile()
+    {
+        $data = [
+            'title' => 'Digital Festival | My Profile'
+        ];
+        return view('user.profile', $data);
     }
 }

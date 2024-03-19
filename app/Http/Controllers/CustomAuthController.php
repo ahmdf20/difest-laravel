@@ -23,7 +23,7 @@ class CustomAuthController extends Controller
                 'title' => 'Login',
                 'icon' => 'success',
             ];
-            return redirect()->route('user.participant')->with($session);
+            return redirect()->route('user.dashboard')->with($session);
         }
         return redirect()->back()->with(['message' => 'Email atau password salah, harap login kembali!', 'title' => 'Credentials Error', 'icon' => 'error']);
     }

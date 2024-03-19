@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('competition_id')->constrained('competitions');
             $table->text('event_detail');
             $table->timestamps();
-            $table->softDeletes('deleted_at');
+            $table->softDeletes();
         });
     }
 

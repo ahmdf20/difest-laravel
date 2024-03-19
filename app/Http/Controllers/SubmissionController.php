@@ -2,88 +2,55 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Competition;
 use App\Models\Submission;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SubmissionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $data = [
             'title' => 'Digital Festival | Dashboard User',
-            'submissions' => Submission::all(),
+            'submissions' => Submission::orderBy('id', 'desc')->get()->all(),
         ];
         return view('submission.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function tambah()
     {
-        //
+        $data = [
+            'title' => 'Digital Festival | Tambah Submission',
+            'competitions' => Competition::all(),
+            'participants' => User::where('role', 'participant')->get()->all(),
+        ];
+        return view('submission.tambah', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Submission  $submission
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Submission $submission)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Submission  $submission
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Submission $submission)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Submission  $submission
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Submission $submission)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Submission  $submission
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Submission $submission)
-    {
-        //
+        $request->validate([
+            'participant' => 'not_in:pilih',
+            'competition' => 'not_in:pilih',
+            'submission' => 'required|mimes:txt,pdf,rar,zip,docx,jpg,png,jpeg',
+            'submission_desc' => 'required|mimes:txt,pdf,rar,zip,docx,jpg,png,jpeg',
+            'orisinil' => 'required|mimes:txt,pdf,rar,zip,docx,jpg,png,jpeg'
+        ]);
+        $submission = $request->file('submission')->store('submission');
+        $submission_desc = $request->file('submission_desc')->store('submission');
+        $orisinil = $request->file('orisinil')->store('submission');
+        Submission::insert([
+            'comp_id' => $request->competition,
+            'user_id' => $request->participant,
+            'submission' => $submission,
+            'submission_desc' => $submission_desc,
+            'orisinil' => $orisinil
+        ]);
+        return redirect()->route('submission')->with([
+            'icon' => 'success',
+            'title' => 'Tambah Data',
+            'message' => 'Berhasil menambahkan data submission!'
+        ]);
     }
 }

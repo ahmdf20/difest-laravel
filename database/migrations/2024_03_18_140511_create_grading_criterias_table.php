@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('comp_id')->constrained('competitions');
             $table->string('label');
+            $table->enum('criteria_type', ['Penilaian Karya', 'Penilaian Presentasi']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

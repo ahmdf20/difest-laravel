@@ -18,7 +18,7 @@
             <ul tabindex="0"
                 class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 bg-neutral text-neutral-100">
                 <li>
-                    <a class="justify-between" href="{{ route('profile.show') }}">
+                    <a class="justify-between" href="{{ route('user.profile') }}">
                         Profile
                     </a>
                 </li>

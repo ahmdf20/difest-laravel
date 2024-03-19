@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $title }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -53,30 +53,7 @@
             </div>
             <div class="drawer-side">
                 <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
-                <ul class="menu p-4 w-80 min-h-full gap-3 bg-neutral text-neutral-100">
-                    <!-- Sidebar content here -->
-                    <li>
-                        <a class="{{ request()->routeIs('user.dashboard') ? 'btn btn-primary' : '' }}"
-                            href="{{ route('user.dashboard') }}">Dashboard</a>
-                    </li>
-                    <li>
-                        <a class="{{ request()->routeIs('user.commite') ? 'btn btn-primary' : '' }}"
-                            href="{{ route('user.commite') }}">Commite</a>
-                    </li>
-                    <li>
-                        <a class="{{ request()->routeIs('user.judge') ? 'btn btn-primary' : '' }}"
-                            href="{{ route('user.judge') }}">Judge</a>
-                    </li>
-                    <li>
-                        <a class="{{ request()->routeIs('user.participant') ? 'btn btn-primary' : '' }}"
-                            href="{{ route('user.participant') }}">Participant</a>
-                    </li>
-                    <li><a class="{{ request()->routeIs('submission') ? 'btn btn-primary' : '' }}"
-                            href="{{ route('submission') }}">Karya</a></li>
-                    <li><a>Kriteria Penilaian</a></li>
-                    <li><a>Penilaian Karya</a></li>
-                    <li><a onclick="confirmLogout()">Logout</a></li>
-                </ul>
+                @livewire('sidebar-menu')
 
             </div>
         </div>

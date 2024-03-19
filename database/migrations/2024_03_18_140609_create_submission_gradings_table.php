@@ -18,8 +18,10 @@ return new class extends Migration
             $table->foreignId('submission_id')->constrained('submissions');
             $table->foreignId('grading_criteria_id')->constrained('grading_criterias');
             $table->foreignId('judge_id')->constrained('users');
-            $table->integer('score');
+            $table->enum('criteria_type', ['Penilaian Karya', 'Penilaian Presentasi']);
+            $table->integer('score')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

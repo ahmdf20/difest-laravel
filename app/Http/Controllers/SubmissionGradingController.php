@@ -2,84 +2,84 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GradingCriteria;
+use App\Models\Submission;
 use App\Models\SubmissionGrading;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SubmissionGradingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $data = [
+            'title' => 'Digital Festival | Submission Grading',
+            'submission_gradings' => SubmissionGrading::all(),
+            'submissions' => Submission::all(),
+        ];
+        return view('grading.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function penilaian_karya(Submission $submission)
     {
-        //
+        $data = [
+            'title' => 'Digital Festival | Penilaian Karya',
+            'submission' => $submission,
+            'grading_criterias' => GradingCriteria::where([['comp_id', $submission->comp_id], ['criteria_type', 'Penilaian Karya']])->get()->all(),
+            'submission_gradings' => SubmissionGrading::where([['submission_id', $submission->id], ['criteria_type', 'Penilaian Karya']])->get()->all(),
+        ];
+        return view('grading.penilaian-karya', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function penilaian_presentasi(Submission $submission)
     {
-        //
+        $data = [
+            'title' => 'Digital Festival | Penilaian Presentasi',
+            'submission' => $submission,
+            'grading_criterias' => GradingCriteria::where([['comp_id', $submission->comp_id], ['criteria_type', 'Penilaian Presentasi']])->get()->all(),
+            'submission_gradings' => SubmissionGrading::where([['submission_id', $submission->id], ['criteria_type', 'Penilaian Presentasi']])->get()->all(),
+        ];
+        return view('grading.penilaian-presentasi', $data);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\SubmissionGrading  $submissionGrading
-     * @return \Illuminate\Http\Response
-     */
-    public function show(SubmissionGrading $submissionGrading)
+    public function penilaian_karya_store(Request $request, Submission $submission)
     {
-        //
+        foreach ($request->submission_grading as $sg) {
+            SubmissionGrading::insert([
+                'submission_id' => $submission->id,
+                'grading_criteria_id' => $sg,
+                'judge_id' => auth()->user()->id,
+                'criteria_type' => 'Penilaian Karya',
+                'score' => $request->penilaian[$sg],
+                'created_at' => now('Asia/Jakarta')
+            ]);
+        }
+
+        return redirect()->route('submission-grading')->with([
+            'icon' => 'success',
+            'title' => 'Penilaian Karya',
+            'message' => 'Berhasil menilai karya!'
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\SubmissionGrading  $submissionGrading
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(SubmissionGrading $submissionGrading)
+    public function penilaian_presentasi_store(Request $request, Submission $submission)
     {
-        //
-    }
+        foreach ($request->submission_grading as $sg) {
+            SubmissionGrading::insert([
+                'submission_id' => $submission->id,
+                'grading_criteria_id' => $sg,
+                'judge_id' => auth()->user()->id,
+                'criteria_type' => 'Penilaian Presentasi',
+                'score' => $request->penilaian[$sg],
+                'created_at' => now('Asia/Jakarta')
+            ]);
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\SubmissionGrading  $submissionGrading
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, SubmissionGrading $submissionGrading)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\SubmissionGrading  $submissionGrading
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(SubmissionGrading $submissionGrading)
-    {
-        //
+        return redirect()->route('submission-grading')->with([
+            'icon' => 'success',
+            'title' => 'Penilaian Presentasi',
+            'message' => 'Berhasil menilai presentasi peserta!'
+        ]);
     }
 }

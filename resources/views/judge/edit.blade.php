@@ -1,4 +1,5 @@
 <x-dashboard-layout>
+    <x-slot name="title">{{ $title }}</x-slot>
     <div class="bg-neutral p-3 rounded-lg max-w-2xl mx-auto mt-5 text-neutral-100">
         <div class="flex justify-between mb-3">
             <h1 class="text-3xl mb-4">Form Edit Commite</h1>

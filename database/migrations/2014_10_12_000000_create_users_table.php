@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('from_competition');
             $table->enum('role', ['admin', 'commite', 'judge', 'participant']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

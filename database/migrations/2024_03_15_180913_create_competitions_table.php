@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('comp_image');
             $table->text('comp_price');
             $table->timestamps();
-            $table->softDeletes('deleted_at');
+            $table->softDeletes();
         });
     }
 

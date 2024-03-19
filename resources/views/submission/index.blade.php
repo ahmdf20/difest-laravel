@@ -1,9 +1,11 @@
 <x-dashboard-layout>
+    <x-slot name="title">{{ $title }}</x-slot>
     <div class="bg-neutral p-3 rounded-lg mx-auto max-w-5xl mt-5 text-neutral-100">
         <h1 class="text-3xl mb-4">Tabel Submissions</h1>
         <hr class="py-4">
+        <a class="btn btn-sm btn-success mb-3" href="{{ route('submission.tambah') }}">Tambah Submission</a>
         <div class="overflow-x-auto">
-            <table class="table" id="example">
+            <table class="table" id="table_submission">
                 <!-- head -->
                 <thead>
                     <tr>
@@ -40,7 +42,7 @@
         </div>
     </div>
     <script>
-        $('#example').DataTable()
+        $('#table_submission').DataTable()
     </script>
 
     @if (Session::get('message'))
