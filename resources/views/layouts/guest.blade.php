@@ -3,33 +3,19 @@
 
 <head>
     <meta charset="utf-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1"
-    >
-    <meta
-        name="csrf-token"
-        content="{{ csrf_token() }}"
-    >
-    <link
-        rel="shortcut icon"
-        href="{{ asset('image/icon/difest.png') }}"
-        type="image/x-icon"
-    >
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="shortcut icon" href="{{ asset('image/icon/difest.png') }}" type="image/x-icon">
+    <title>{{ $title }}</title>
 
     <!-- Fonts -->
-    <link
-        rel="preconnect"
-        href="https://fonts.bunny.net"
-    >
-    <link
-        href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap"
-        rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    <script src="{{ asset('build/assets/app-710b364f.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('build/assets/app-adf639ee.css') }}">
     <script src="{{ asset('js/sweetalert2.all.js') }}"></script>
 </head>
 
