@@ -40,7 +40,7 @@
             confirmButtonText: "Ya"
         }).then((result) => {
             if (result.isConfirmed)
-                window.location.href = `http://127.0.0.1:8000/custom/logout`
+                window.location.href = `{{ config('app.url') }}/custom/logout`
         })
     }
 </script>

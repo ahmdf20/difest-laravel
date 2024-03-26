@@ -19,7 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($commite as $key => $c)
+                    @foreach ($judge as $key => $c)
                         <tr>
                             <th>{{ $key + 1 }}</th>
                             <td>{{ $c->username }}</td>
@@ -57,7 +57,7 @@
                 confirmButtonText: "Ya, hapus!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = `http://127.0.0.1:8000/user/judge/${id}/hapus`
+                    window.location.href = `{{ config('app.url') }}user/judge/${id}/hapus`
                 }
             })
         }

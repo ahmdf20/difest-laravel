@@ -57,7 +57,7 @@
                 confirmButtonText: "Ya, hapus!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = `http://127.0.0.1:8000/user/commite/${id}/hapus`
+                    window.location.href = `{{ config('app.url') }}/user/commite/${id}/hapus`
                 }
             })
         }

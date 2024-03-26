@@ -40,7 +40,7 @@ class UserController extends Controller
     {
         $data = [
             'title' => 'Digital Festival | Jugde',
-            'commite' => User::where([['role', 'judge'], ['deleted_at', null]])->get()->all(),
+            'judge' => User::where([['role', 'judge'], ['deleted_at', null]])->get()->all(),
         ];
         return view('judge.index', $data);
     }
