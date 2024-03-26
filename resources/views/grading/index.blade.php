@@ -29,11 +29,12 @@
                                             <ul tabindex="0"
                                                 class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                                                 <li>
-                                                    <a
-                                                        href="{{ asset('storage/' . $submission->submission) }}">Karya</a>
+                                                    <a href="{{ asset('storage/' . $submission->submission) }}"
+                                                        target="_blank">Karya</a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{ asset('storage/' . $submission->submission_desc) }}">Deskripsi
+                                                    <a href="{{ asset('storage/' . $submission->submission_desc) }}"
+                                                        target="_blank">Deskripsi
                                                         Karya</a>
                                                 </li>
                                             </ul>
@@ -72,10 +73,12 @@
                                         <ul tabindex="0"
                                             class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                                             <li>
-                                                <a href="{{ asset('storage/' . $submission->submission) }}">Karya</a>
+                                                <a href="{{ asset('storage/' . $submission->submission) }}"
+                                                    target="_blank">Karya</a>
                                             </li>
                                             <li>
-                                                <a href="{{ asset('storage/' . $submission->submission_desc) }}">Deskripsi
+                                                <a href="{{ asset('storage/' . $submission->submission_desc) }}"
+                                                    target="_blank">Deskripsi
                                                     Karya</a>
                                             </li>
                                         </ul>
