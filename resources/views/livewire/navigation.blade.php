@@ -13,7 +13,7 @@
     <div class="flex-none">
         <div class="dropdown dropdown-end">
             <div tabindex="0" role="button" class="btn btn-ghost text-neutral-100">
-                {{ auth()->user()->name }}
+                {{ auth()->user()?->name }}
             </div>
             <ul tabindex="0"
                 class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 bg-neutral text-neutral-100">

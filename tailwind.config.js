@@ -10,6 +10,17 @@ module.exports = {
     ],
 
     theme: {
+        colors: {
+            transparent: 'transparent',
+            'biru-dark-100': '#0A4696',
+            'biru-dark-200': '#0B2F62',
+            'dark-mode-difest': '#4F4675',
+            'light-mode-difest': '#F9EC83',
+            'hijau-difest': '#27D1D1',
+            'hijau-difest-hover': '#20C2C2',
+            'kuning-difest': '#FFFFA0',
+            // 'biru-bg-difest': '#1a5073',
+        },
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],

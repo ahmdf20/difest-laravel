@@ -15,13 +15,13 @@
     <link rel="shortcut icon" href="{{ asset('image/icon/difest.png') }}" type="image/x-icon">
 
     <!-- Scripts -->
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Styles -->
     @livewireStyles
 
-    <script src="{{ asset('build/assets/app-710b364f.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('build/assets/app-286d727a.css') }}">
+    {{-- <script src="{{ asset('build/assets/app-710b364f.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('build/assets/app-286d727a.css') }}"> --}}
     {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
@@ -41,17 +41,14 @@
 </head>
 
 <body class="font-sans antialiased">
-    <x-banner />
 
-    <div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen bg-neutral-100">
         @livewire('navigation')
         <div class="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
             <div class="drawer-content">
                 <!-- Page Content -->
-                <main class="p-3">
-                    {{ $slot }}
-                </main>
+                {{ $slot }}
             </div>
             <div class="drawer-side">
                 <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
@@ -60,8 +57,6 @@
             </div>
         </div>
     </div>
-
-    @stack('modals')
 
     @livewireScripts
 </body>

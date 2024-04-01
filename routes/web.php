@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\GradingCriteriaController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\SubmissionGradingController;
 use App\Http\Controllers\UserController;
@@ -18,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('login');
+Route::get('/dashboard', function () {
+    return redirect()->route('user.dashboard');
 });
 
 // Route::middleware([
@@ -32,7 +33,11 @@ Route::get('/', function () {
 //     })->name('dashboard');
 // });
 
-
+Route::controller(LandingController::class)->group(function () {
+    Route::get('/', 'index')->name('landing.index');
+    Route::get('/daftar-seminar', 'daftar_seminar')->name('landing.daftar-seminar');
+    Route::post('/daftar-seminar/store', 'store')->name('landing.daftar-seminar.store');
+});
 
 Route::controller(CustomAuthController::class)->group(function () {
     Route::post('/custom/login', 'credentials')->name('custom.login');

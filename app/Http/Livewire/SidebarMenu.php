@@ -43,6 +43,11 @@ class SidebarMenu extends Component
             'access' => ['admin', 'commite', 'judge'],
         ],
         7 => [
+            'name' => 'Seminar',
+            'path' => 'submission-grading',
+            'access' => ['admin', 'commite'],
+        ],
+        8 => [
             'name' => 'Profile',
             'path' => 'user.profile',
             'access' => ['admin', 'commite', 'judge', 'participant'],
