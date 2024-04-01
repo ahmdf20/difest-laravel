@@ -15,13 +15,6 @@ class SeminarController extends Controller
             'seminars' => Seminar::all(),
         ];
 
-        return view('seminar.index');
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            //
-        ]);
+        return view('seminar.index', $data);
     }
 }

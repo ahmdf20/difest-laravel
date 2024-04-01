@@ -3,6 +3,7 @@
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\GradingCriteriaController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\SubmissionGradingController;
 use App\Http\Controllers\UserController;
@@ -92,4 +93,8 @@ Route::controller(SubmissionGradingController::class)->middleware('auth')->middl
 
     Route::post('/submission-grading/{submission}/penilaian-karya/store', 'penilaian_karya_store')->name('submission-grading.penilaian-karya.store');
     Route::post('/submission-grading/{submission}/penilaian-presentasi/store', 'penilaian_presentasi_store')->name('submission-grading.penilaian-presentasi.store');
+});
+
+Route::controller(SeminarController::class)->middleware('auth')->middleware('check-role:admin,commite')->group(function () {
+    Route::get('/dashboard/seminar', 'index')->name('seminar');
 });

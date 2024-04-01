@@ -44,7 +44,7 @@ class SidebarMenu extends Component
         ],
         7 => [
             'name' => 'Seminar',
-            'path' => 'submission-grading',
+            'path' => 'seminar',
             'access' => ['admin', 'commite'],
         ],
         8 => [
