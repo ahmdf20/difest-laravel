@@ -10,7 +10,7 @@ class SidebarMenu extends Component
         0 => [
             'name' => 'Dashboard',
             'path' => 'user.dashboard',
-            'access' => ['admin', 'commite', 'judge', 'participant'],
+            'access' => ['admin', 'admin seminar', 'commite', 'judge', 'participant'],
         ],
         1 => [
             'name' => 'Commite',
@@ -45,12 +45,12 @@ class SidebarMenu extends Component
         7 => [
             'name' => 'Seminar',
             'path' => 'seminar',
-            'access' => ['admin', 'commite'],
+            'access' => ['admin', 'admin seminar'],
         ],
         8 => [
             'name' => 'Profile',
             'path' => 'user.profile',
-            'access' => ['admin', 'commite', 'judge', 'participant'],
+            'access' => ['admin', 'admin seminar', 'commite', 'judge', 'participant'],
         ],
     ];
 

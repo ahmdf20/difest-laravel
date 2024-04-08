@@ -24,16 +24,6 @@ Route::get('/dashboard', function () {
     return redirect()->route('user.dashboard');
 });
 
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified'
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-// });
-
 Route::controller(LandingController::class)->group(function () {
     Route::get('/', 'index')->name('landing.index');
     Route::get('/daftar-seminar', 'daftar_seminar')->name('landing.daftar-seminar');
@@ -95,6 +85,6 @@ Route::controller(SubmissionGradingController::class)->middleware('auth')->middl
     Route::post('/submission-grading/{submission}/penilaian-presentasi/store', 'penilaian_presentasi_store')->name('submission-grading.penilaian-presentasi.store');
 });
 
-Route::controller(SeminarController::class)->middleware('auth')->middleware('check-role:admin,commite')->group(function () {
+Route::controller(SeminarController::class)->middleware('auth')->middleware('check-role:admin,admin seminar')->group(function () {
     Route::get('/dashboard/seminar', 'index')->name('seminar');
 });
