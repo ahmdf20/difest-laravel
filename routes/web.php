@@ -81,6 +81,8 @@ Route::controller(SubmissionGradingController::class)->middleware('auth')->middl
     Route::get('/submission-grading/{submission}/penilaian-karya', 'penilaian_karya')->name('submission-grading.penilaian-karya');
     Route::get('/submission-grading/{submission}/penilaian-presentasi', 'penilaian_presentasi')->name('submission-grading.penilaian-presentasi');
 
+    Route::get('/submission-grading/{submission}/detail-penilaian', 'detail_penilaian')->name('submission-grading.detail-penilaian');
+
     Route::post('/submission-grading/{submission}/penilaian-karya/store', 'penilaian_karya_store')->name('submission-grading.penilaian-karya.store');
     Route::post('/submission-grading/{submission}/penilaian-presentasi/store', 'penilaian_presentasi_store')->name('submission-grading.penilaian-presentasi.store');
 });

@@ -45,13 +45,24 @@ class SubmissionGradingController extends Controller
         return view('grading.penilaian-presentasi', $data);
     }
 
+    public function detail_penilaian(Submission $submission)
+    {
+        $data = [
+            'title' => 'Digital Festival | Detail Penilaian',
+            'submission' => $submission,
+            'grading_criteria' => GradingCriteria::where('comp_id', $submission->comp_id)->get()->all(),
+            'submission_grading' => SubmissionGrading::where('submission_id', $submission->id)->get()->all()
+        ];
+        return view('grading.detail-penilaian', $data);
+    }
+
     public function penilaian_karya_store(Request $request, Submission $submission)
     {
         foreach ($request->submission_grading as $sg) {
             SubmissionGrading::insert([
                 'submission_id' => $submission->id,
                 'grading_criteria_id' => $sg,
-                'judge_id' => auth()->user()->id,
+                'user_id' => auth()->user()->id,
                 'criteria_type' => 'Penilaian Karya',
                 'score' => $request->penilaian[$sg],
                 'created_at' => now('Asia/Jakarta')
@@ -71,7 +82,7 @@ class SubmissionGradingController extends Controller
             SubmissionGrading::insert([
                 'submission_id' => $submission->id,
                 'grading_criteria_id' => $sg,
-                'judge_id' => auth()->user()->id,
+                'user_id' => auth()->user()->id,
                 'criteria_type' => 'Penilaian Presentasi',
                 'score' => $request->penilaian[$sg],
                 'created_at' => now('Asia/Jakarta')
