@@ -28,7 +28,7 @@ class SubmissionGradingController extends Controller
             'title' => 'Digital Festival | Penilaian Karya',
             'submission' => $submission,
             'grading_criterias' => GradingCriteria::where([['comp_id', $submission->comp_id], ['criteria_type', 'Penilaian Karya']])->get()->all(),
-            'submission_gradings' => SubmissionGrading::where([['submission_id', $submission->id], ['criteria_type', 'Penilaian Karya'], ['judge_id', $current_judge->id]])->get()->all(),
+            'submission_gradings' => SubmissionGrading::where([['submission_id', $submission->id], ['criteria_type', 'Penilaian Karya'], ['user_id', $current_judge->id]])->get()->all(),
         ];
         return view('grading.penilaian-karya', $data);
     }
@@ -40,7 +40,7 @@ class SubmissionGradingController extends Controller
             'title' => 'Digital Festival | Penilaian Presentasi',
             'submission' => $submission,
             'grading_criterias' => GradingCriteria::where([['comp_id', $submission->comp_id], ['criteria_type', 'Penilaian Presentasi']])->get()->all(),
-            'submission_gradings' => SubmissionGrading::where([['submission_id', $submission->id], ['criteria_type', 'Penilaian Presentasi'], ['judge_id', $current_judge->id]])->get()->all(),
+            'submission_gradings' => SubmissionGrading::where([['submission_id', $submission->id], ['criteria_type', 'Penilaian Presentasi'], ['user_id', $current_judge->id]])->get()->all(),
         ];
         return view('grading.penilaian-presentasi', $data);
     }
