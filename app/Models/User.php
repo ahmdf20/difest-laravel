@@ -12,6 +12,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Submission;
 use App\Models\SubmissionGrading;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -70,5 +71,10 @@ class User extends Authenticatable
     public function submission_grading(): HasOne
     {
         return $this->hasOne(SubmissionGrading::class);
+    }
+
+    public function top_five(): HasOne
+    {
+        return $this->hasOne(TopFive::class);
     }
 }

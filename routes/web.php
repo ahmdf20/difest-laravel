@@ -6,6 +6,7 @@ use App\Http\Controllers\LandingController;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\SubmissionGradingController;
+use App\Http\Controllers\TopFiveController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -89,4 +90,13 @@ Route::controller(SubmissionGradingController::class)->middleware('auth')->middl
 
 Route::controller(SeminarController::class)->middleware('auth')->middleware('check-role:admin,admin seminar')->group(function () {
     Route::get('/dashboard/seminar', 'index')->name('seminar');
+});
+
+Route::controller(TopFiveController::class)->group(function () {
+    Route::get('/top-five', 'index')->name('top-five');
+    Route::get('/top-five/tambah', 'tambah')->name('top-five.tambah');
+
+    Route::delete('/top-five/{top_five}/hapus', 'hapus')->name('top-five.hapus');
+
+    Route::post('/top-five/store', 'store')->name('top-five.store');
 });
