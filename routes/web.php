@@ -92,7 +92,7 @@ Route::controller(SeminarController::class)->middleware('auth')->middleware('che
     Route::get('/dashboard/seminar', 'index')->name('seminar');
 });
 
-Route::controller(TopFiveController::class)->group(function () {
+Route::controller(TopFiveController::class)->middleware('check-role:admin,commite')->group(function () {
     Route::get('/top-five', 'index')->name('top-five');
     Route::get('/top-five/tambah', 'tambah')->name('top-five.tambah');
 

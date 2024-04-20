@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TopFive;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use function Termwind\render;
 
@@ -12,7 +14,8 @@ class UserController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Digital Festival | Dashboard'
+            'title' => 'Digital Festival | Dashboard',
+            'top5' => DB::table('top_fives')->select(['users.name', 'users.from_competition', 'top_fives.judul', 'top_fives.asal_sekola'])->join('users', 'top_fives.user_id', '=', 'users.id')->orderBy('users.from_competition', 'asc')->get()->all()
         ];
 
         return view('user.index', $data);
